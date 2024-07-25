@@ -3,6 +3,7 @@ import {
   BarChart,
   CartesianGrid,
   Legend,
+  ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
@@ -44,6 +45,16 @@ const data = [
   { name: "Page C", uv: 800, pv: 2000, amt: 3400 },
   { name: "Page D", uv: 1300, pv: 1000, amt: 1400 },
 ];
+
+const data2 = [
+  { name: "Jan", sales: 4000, revenue: 2400 },
+  { name: "Feb", sales: 3000, revenue: 1398 },
+  { name: "Mar", sales: 2000, revenue: 9800 },
+  { name: "Apr", sales: 2780, revenue: 3908 },
+  { name: "May", sales: 1890, revenue: 4800 },
+  { name: "Jun", sales: 2390, revenue: 3800 },
+  { name: "Jul", sales: 3490, revenue: 4300 },
+];
 function BarChartComp() {
   return (
     <div>
@@ -67,6 +78,35 @@ function BarChartComp() {
         <Bar dataKey="pv" fill="#8884d8" />
         <Bar dataKey="uv" fill="#82ca9d" />
       </BarChart>
+      <ResponsiveContainer width="100%" height={400}>
+        <BarChart data={data2}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="name" />
+          <YAxis
+            yAxisId="left"
+            label={{
+              value: "Sales",
+              angle: -90,
+              position: "insideLeft",
+              offset: 15,
+            }}
+          />
+          <YAxis
+            yAxisId="right"
+            orientation="right"
+            label={{
+              value: "Revenue",
+              angle: 90,
+              position: "insideRight",
+              offset: 15,
+            }}
+          />
+          <Tooltip />
+          <Legend />
+          <Bar yAxisId="left" dataKey="sales" fill="#8884d8" />
+          <Bar yAxisId="right" dataKey="revenue" fill="#82ca9d" />
+        </BarChart>
+      </ResponsiveContainer>
     </div>
   );
 }
